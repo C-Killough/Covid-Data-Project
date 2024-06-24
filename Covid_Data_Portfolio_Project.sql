@@ -1,6 +1,9 @@
+--Checking Data
+
 select * from coviddeaths
 where continent is not null
-order by 3, 4
+fetch first 10 row only
+order by 3, 4;
 
 	
 --Select Data I'm going to be using
@@ -89,7 +92,7 @@ join covidvaccinations vac
 --order by 2 ,3
 )
 select *, (rolling_people_vaccinated::float/population::float)*100
-from pop_vs_vac
+from pop_vs_vac;
 
 -- Temp Table
 
@@ -122,11 +125,13 @@ order by 2,3
 
 	
 Select *, (rolling_people_vaccinated/population) * 100
-from percent_population_vaccinated
+from percent_population_vaccinated;
 
 
 -- creating views to store data for later visualizations
 
+	--vaccination percentage
+	
 create view percent_population_vaccinated as
 select dea.continent, dea.location, dea.date, dea.population
 , vac.new_vaccinations,
@@ -139,4 +144,39 @@ join covidvaccinations vac
 	on dea.location = vac.location
 	and dea.date = vac.date
 where dea.continent is not null
---order by 2,3
+--order by 2,3;
+
+	--world death data
+
+create view world_deaths as
+select sum(new_cases) as total_cases,
+	sum(new_deaths) as total_deaths, 
+	((sum(new_cases))::float)/ ((sum(new_deaths)::float)*100) 
+	as DeathPercentage
+from coviddeaths
+where continent is not null
+order by 1,2;
+
+	-- continent based death data
+
+create view continent_deaths as 
+select location, sum(new_deaths) as total_deaths from coviddeaths
+where continent is null
+group by location
+order by total_deaths desc;
+
+	-- percent of population affected
+
+create view percent_population_infeted as
+select location, population, max(total_cases) as highest_infection_count,  max((total_cases::float/population::float))*100 as percent_population_infected
+from coviddeaths
+group by location, population
+order by percent_population_infected desc;
+
+	--percent infected w/date
+
+create view percent_population_infected_with_date as 
+select location, population,date, max(total_cases) as highest_infection_count,  max((total_cases::float/population::float))*100 as percent_population_infected
+from coviddeaths
+group by location, population, date
+order by percent_population_infected desc;
