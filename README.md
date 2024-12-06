@@ -98,4 +98,8 @@ order by percent_population_infected desc;
 # Final Visualization 
 This is the final dashboard showing the visualizations of the various views created. 
 
-![PowerBI Dashboard](Covid-Data-Project\BI_Dashboard.png)
+![PowerBI_Dashboard](images/BI_Dashboard.png)
+
+
+Here is the link to the final dashboard if you would like to view it:
+[Power BI Dashboard](https://app.powerbi.com/view?r=eyJrIjoiYjQyZGI0NWItYjQzMy00OTkxLWE2ZjItYjM4OWEyYTgzYWFhIiwidCI6ImJhZjgyMThlLWIzMDItNDQ2NS1hOTkzLTRhMzljOTcyNTFiMiIsImMiOjF9)
