@@ -98,7 +98,7 @@ order by percent_population_infected desc;
 # Final Visualization 
 This is the final dashboard showing the visualizations of the various views created. 
 
-![PowerBI_Dashboard](images/BI_Dashboard.png)
+<img width="2416" height="1196" alt="Covid_Dashboard_Updated" src="https://github.com/user-attachments/assets/dc2c5f2e-2029-454f-93a3-2ed48ec14169" />
 
 
 Here is the link to the final dashboard if you would like to view it:
